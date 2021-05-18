@@ -18,6 +18,8 @@ const RegisterForm = ({onValuesChange, errors}) => {
     const [isAgreedToTerms, setIsAgreedToTerms] = useState(false);
     
 
+    const [validationErrors, setValidationErrors] = useState(errors)
+
      useEffect(() => {
          onValuesChange({
             name,
@@ -29,45 +31,46 @@ const RegisterForm = ({onValuesChange, errors}) => {
                isAgreedToTerms 
          })
      }, [name, number, dateOfBirth, email, password, confirmPassword, isAgreedToTerms])
+
     return (
         <View style={styles.container}>
           <InputField label="이름" 
           onChange={(val) => setName(val)}
           value={name}
-          error={errors['name']}
+          error={validationErrors['name']}
           placeholder="이채민"/>
           <InputField  label="휴대폰 번호" 
           onChange={(val) => setNumber(val)}
           value={number}
           isNumberField
-          error={errors['number']}
+          error={validationErrors['number']}
           placeholder="+82 111 1111111"/>
           <InputField  label="생년월일" 
           onChange={(val) => setDateOfBirth(val)}
           value={dateOfBirth}
-          error={errors['dateOfBirth']}
+          error={validationErrors['dateOfBirth']}
           placeholder="mm - dd-yyyy"/>
           <InputField  label="Email" 
           onChange={(val) => setEmail(val)}
           value={email}
-          error={errors['email']}
+          error={validationErrors['email']}
           placeholder="john.doe@alphametics.com"/>
           <InputField  label="비밀번호" 
           isPassField
           onChange={(val) => setPassword(val)}
           value={password}
-          error={errors['password']}
+          error={validationErrors['password']}
           placeholder='●●●●●●●●' />
           <InputField  label="비밀번호 확인" 
           isPassField
           onChange={(val) => setConfirmPassword(val)}
           value={confirmPassword}
-          error={errors['confirmPassword']}
+          error={validationErrors['confirmPassword']}
           placeholder='○○○○○○○○'/>
           <PasswordValidator password={password}    />
           <CheckboxInput label="이용약관에 동의합니다" 
           value={isAgreedToTerms}
-          error={errors['isAgreedToTerms']}
+          error={validationErrors['isAgreedToTerms']}
           onPress={() => setIsAgreedToTerms(!isAgreedToTerms)}
           />
           

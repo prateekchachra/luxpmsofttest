@@ -38,12 +38,22 @@ const Register = ({navigation}) => {
         navigation.navigate('Login')
     }
 
+    const validateForm = (values) => {
+
+        let errorsFromValidation = {};
+
+        const {name, password, confirmPassword, email,
+        dateOfBirth, number, isAgreedToTerms} = values;
+
+        isAgreedToTerms ? errorsFromValidation['isAgreedToTerms'] = 
+        'Please agree to the Terms and Conditions' : null;
+
+        return errorsFromValidation;
+    }
     const onPressRegister = () => {
 
 
-        let errorsFromValidation = {}
-            // validate valuesFromForm
-
+        let errorsFromValidation  = validateForm(valuesFromForm)
 
             if(Object.keys(errorsFromValidation).length === 0){
 

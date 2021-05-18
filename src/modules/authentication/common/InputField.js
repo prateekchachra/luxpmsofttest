@@ -1,5 +1,5 @@
 //import liraries
-import React, { Component } from 'react';
+import React, {useState, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { themeColors } from '../../../utils/theme';
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -12,6 +12,13 @@ const InputField = ({label, isLogin, placeholder,
     isPassField,
     error,
     iconName, iconSize, value, onChange}) => {
+
+        const [validationError, setValidationError] = useState(error);
+
+        useEffect(() => {
+            setValidationError(error)
+        }, [error])
+        console.log(validationError)
     return (
         <View style={styles.container}>
             <Text style={isLogin ? styles.loginLabelStyle :  styles.registerLabelStyle}>{label}</Text>
