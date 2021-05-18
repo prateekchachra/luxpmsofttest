@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {View, StyleSheet} from 'react-native';
 import Toast from 'react-native-toast-message';
 
@@ -8,15 +8,28 @@ import AuthLabel from '../common/components/AuthLabel';
 
 import {themeColors} from '../../../utils/theme';
 
+import {accounts} from '../../../constants/accounts';
 import LoginForm from './LoginForm'
 
 
 export default function Login({navigation}) {
 
+    
+    const [valuesFromForm, setValuesFromForm]  = useState({
+        email: '',
+        password: '',
+    })
+    const [errors, setErrors] = useState(null)
 
    const  onPressLogin = () => {
 
-    Toast.show({
+
+
+    let isAccountInDB = accounts.filter(account => account.password === 
+        valuesFromForm?.password && account.email === valuesFromForm?.email).length > 0;
+
+        if(isAccountInDB){
+                Toast.show({
         text1: '성공적 로그인!',
         text2: '집으로 안내',
         visibilityTime: 1000,
@@ -24,22 +37,36 @@ export default function Login({navigation}) {
             navigation.navigate('Landing')
         }
       });
+        }
+        else {
+            setErrors({loginError: 'Invalid credentials. Try again'})
+        }
+
 
     }
 
     const onPressRegister = () => {
         navigation.navigate('Register')
     }
+
+    const onValuesChange = (values) => {
+        setValuesFromForm(values);
+        setErrors(null);
+    };
+
     return (
         <View style={styles.containerStyle}>
             <View style={styles.headerContainerStyle}>
             <Header />
 
         <AuthLabel label="로그인"/>
-        <LoginForm />
+        <LoginForm onValuesChange={onValuesChange}
+        errors={errors}/>
         </View>
             <View style={styles.buttonContainerStyle}>
-           <Button 
+                {errors && errors.loginError ? <Text></Text> : null}
+           <Button
+            
              onPress={onPressLogin}
              label="로그인"
 

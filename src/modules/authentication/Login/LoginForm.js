@@ -1,17 +1,23 @@
 //import liraries
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { themeColors } from '../../../utils/theme';
 
 
 import InputField from '../common/InputField';
 // create a component
-const LoginForm = () => {
+const LoginForm = ({onValuesChange}) => {
 
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+
+    useEffect(() => {
+        onValuesChange({
+            email, password
+        })
+    }, [email, password])
 
     return (
         <View style={styles.container}>
