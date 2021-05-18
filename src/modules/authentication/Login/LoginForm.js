@@ -32,6 +32,7 @@ const LoginForm = ({onValuesChange}) => {
               <InputField  
               isLogin
               label="비밀번호" 
+              isPassField
               iconName="lock-closed"
               iconSize={24}
           onChange={(val) => setPassword(val)}

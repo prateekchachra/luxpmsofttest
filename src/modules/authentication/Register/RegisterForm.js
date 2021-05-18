@@ -28,6 +28,7 @@ const RegisterForm = ({setRegisterFormValues}) => {
           <InputField  label="휴대폰 번호" 
           onChange={(val) => setNumber(val)}
           value={number}
+          isNumberField
           placeholder="+82 111 1111111"/>
           <InputField  label="생년월일" 
           onChange={(val) => setDateOfBirth(val)}
@@ -38,10 +39,13 @@ const RegisterForm = ({setRegisterFormValues}) => {
           value={email}
           placeholder="john.doe@alphametics.com"/>
           <InputField  label="비밀번호" 
+          isPassField
           onChange={(val) => setPassword(val)}
           value={password}
+          
           placeholder='●●●●●●●●' />
           <InputField  label="비밀번호 확인" 
+          isPassField
           onChange={(val) => setConfirmPassword(val)}
           value={confirmPassword}
           placeholder='○○○○○○○○'/>

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {View, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import Toast from 'react-native-toast-message';
 
 import Header from '../../../components/Header';
@@ -64,7 +64,7 @@ export default function Login({navigation}) {
         errors={errors}/>
         </View>
             <View style={styles.buttonContainerStyle}>
-                {errors && errors.loginError ? <Text></Text> : null}
+                {errors && errors.loginError ? <Text style={styles.errorTextStyle}>{errors.loginError}</Text> : null}
            <Button
             
              onPress={onPressLogin}
@@ -97,4 +97,10 @@ const styles = StyleSheet.create({
     headerContainerStyle: {
         alignItems: 'center'
     },
+    errorTextStyle: {
+        color: 'red',
+        fontSize: 12,
+        fontWeight: '300',
+        marginVertical: 8
+    }
 })

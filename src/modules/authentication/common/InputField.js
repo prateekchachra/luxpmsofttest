@@ -5,6 +5,8 @@ import { themeColors } from '../../../utils/theme';
 import Icon from 'react-native-vector-icons/Ionicons'
 // create a component
 const InputField = ({label, isLogin, placeholder,
+    isNumberField,
+    isPassField,
     iconName, iconSize, value, onChange}) => {
     return (
         <View style={styles.container}>
@@ -19,7 +21,9 @@ const InputField = ({label, isLogin, placeholder,
             ) : null}
             <TextInput
             value={value} 
+            secureTextEntry={isPassField}
             placeholder={placeholder}
+            keyboardType={isNumberField ? 'numeric' : 'default'}
             style={isLogin ? styles.loginTextInputStyle :  styles.registerTextInputStyle}
             placeholderTextColor={themeColors.PRIMARY_GRAY}
             onChangeText={onChange}
