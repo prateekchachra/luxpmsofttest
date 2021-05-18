@@ -28,7 +28,6 @@ export default function Login({navigation}) {
     let isAccountInDB = accounts.filter(account => account.password === 
         valuesFromForm?.password && account.email === valuesFromForm?.email).length > 0;
 
-        //Validate values and login in DB
         if(isAccountInDB){
                 Toast.show({
         text1: '성공적 로그인!',

@@ -1,4 +1,4 @@
 export const accounts = [{
-    username: 'test@luxpmsoft.com',
+    email: 'test@luxpmsoft.com',
     password: 'test1234!'
 }]

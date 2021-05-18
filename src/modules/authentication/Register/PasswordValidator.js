@@ -78,7 +78,7 @@ const PasswordValidator = ({password}) => {
 
         for(var i = 0; i < rules.length / 2; i++){
             gridJsx.push((
-                <View style={styles.rowStyle}>
+                <View style={styles.rowStyle} key={(i*2).toString()}>
                   
                         <Rule rule={rules[i*2]}/>
                         <Rule rule={rules[i*2 + 1]}/>
