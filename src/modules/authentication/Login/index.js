@@ -19,7 +19,7 @@ export default function Login({navigation}) {
         email: '',
         password: '',
     })
-    const [errors, setErrors] = useState(null)
+    const [errors, setErrors] = useState({})
 
    const  onPressLogin = () => {
 
@@ -28,6 +28,7 @@ export default function Login({navigation}) {
     let isAccountInDB = accounts.filter(account => account.password === 
         valuesFromForm?.password && account.email === valuesFromForm?.email).length > 0;
 
+        //Validate values and login in DB
         if(isAccountInDB){
                 Toast.show({
         text1: '성공적 로그인!',
@@ -51,7 +52,7 @@ export default function Login({navigation}) {
 
     const onValuesChange = (values) => {
         setValuesFromForm(values);
-        setErrors(null);
+        setErrors({});
     };
 
     return (
@@ -64,7 +65,7 @@ export default function Login({navigation}) {
         errors={errors}/>
         </View>
             <View style={styles.buttonContainerStyle}>
-                {errors && errors.loginError ? <Text style={styles.errorTextStyle}>{errors.loginError}</Text> : null}
+                {errors['loginError'] ? <Text style={styles.errorTextStyle}>{errors.loginError}</Text> : null}
            <Button
             
              onPress={onPressLogin}

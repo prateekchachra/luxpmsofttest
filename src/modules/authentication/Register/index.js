@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import {View, ScrollView, StyleSheet} from 'react-native';
+import Toast from 'react-native-toast-message';
 
 
 import Header from '../../../components/Header';
@@ -18,13 +19,51 @@ import RegisterForm from './RegisterForm';
 // create a component
 const Register = ({navigation}) => {
 
+
+        
+    const [valuesFromForm, setValuesFromForm]  = useState({
+        name: '',
+        number: '',
+        dateOfBirth: '',
+        email: '', 
+        password: '', 
+        confirmPassword: '', 
+        isAgreedToTerms : ''
+    })
+    const [errors, setErrors] = useState({})
+
+
     const  onPressLogin = () => {
         
         navigation.navigate('Login')
     }
 
     const onPressRegister = () => {
+
+
+        let errorsFromValidation = {}
+            // validate valuesFromForm
+
+
+            if(Object.keys(errorsFromValidation).length === 0){
+
+                setValuesFromForm({})
+                    Toast.show({
+            text1: 'Account created!',
+            text2: 'Please try and login now',
+            visibilityTime: 1000,
+            onHide: () => {
+                navigation.navigate('Login')
+            }
+          });
+        } else setErrors(errorsFromValidation)
+    
     }
+
+    const onValuesChange = (values) => {
+        setValuesFromForm(values);
+        setErrors({});
+    };
 
     return (
         <ScrollView contentContainerStyle={styles.containerStyle}>
@@ -33,7 +72,10 @@ const Register = ({navigation}) => {
 
             <AuthLabel label="로그인"/>
 
-            <RegisterForm />
+            <RegisterForm 
+             onValuesChange={onValuesChange}
+             errors={errors}
+           />
             </View>
                 <View style={styles.buttonContainerStyle}>
                 <Button 

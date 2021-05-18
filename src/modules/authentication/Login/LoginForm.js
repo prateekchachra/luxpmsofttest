@@ -6,7 +6,7 @@ import { themeColors } from '../../../utils/theme';
 
 import InputField from '../common/InputField';
 // create a component
-const LoginForm = ({onValuesChange}) => {
+const LoginForm = ({onValuesChange, errors}) => {
 
 
     const [email, setEmail] = useState('');
@@ -25,6 +25,7 @@ const LoginForm = ({onValuesChange}) => {
                  isLogin
                  label="Email" 
                  iconName="mail"
+                 error={errors['email']}
                  iconSize={24}
           onChange={(val) => setEmail(val)}
           value={email}
@@ -33,6 +34,7 @@ const LoginForm = ({onValuesChange}) => {
               isLogin
               label="비밀번호" 
               isPassField
+              error={errors['password']}
               iconName="lock-closed"
               iconSize={24}
           onChange={(val) => setPassword(val)}
