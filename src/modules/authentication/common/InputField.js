@@ -2,24 +2,29 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { themeColors } from '../../../utils/theme';
-
+import Icon from 'react-native-vector-icons/Ionicons'
 // create a component
-const InputField = ({label, isLogin, placeholder, value, onChange}) => {
+const InputField = ({label, isLogin, placeholder,
+    iconName, iconSize, value, onChange}) => {
     return (
         <View style={styles.container}>
             <Text style={isLogin ? styles.loginLabelStyle :  styles.registerLabelStyle}>{label}</Text>
       
       
       
-      
+        <View style={styles.inputContainerStyle}>
+            {iconName ? (
+                <Icon name={iconName} color={themeColors.PRIMARY_GRAY} size={iconSize}
+                style={styles.iconStyle}/>
+            ) : null}
             <TextInput
             value={value} 
             placeholder={placeholder}
             style={isLogin ? styles.loginTextInputStyle :  styles.registerTextInputStyle}
             placeholderTextColor={themeColors.PRIMARY_GRAY}
             onChangeText={onChange}
-            underlineColorAndroid={themeColors.PRIMARY_GRAY}
             />
+            </View>
         </View>
     );
 };
@@ -28,12 +33,20 @@ const InputField = ({label, isLogin, placeholder, value, onChange}) => {
 InputField.defaultProps = {
     onChange: () => {},
     label: '',
-    placeholder: ''
+    placeholder: '',
+    iconSize: 24,
+    isLogin: false,
 }
 // define your styles
 const styles = StyleSheet.create({
     container: {
         marginVertical: 16,
+    },
+    inputContainerStyle: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderBottomColor: themeColors.PRIMARY_GRAY,
+        borderBottomWidth: 1
     },
     registerLabelStyle: {
         fontSize: 16,
@@ -44,6 +57,9 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: themeColors.PRIMARY_GRAY,
         fontWeight: '400'
+    },
+    iconStyle: {
+        marginRight: 8
     },
     registerTextInputStyle: {
         fontSize: 14,

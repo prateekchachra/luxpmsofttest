@@ -18,14 +18,16 @@ const LoginForm = () => {
                  <InputField 
                  isLogin
                  label="Email" 
-                 iconName="lock"
+                 iconName="mail"
+                 iconSize={24}
           onChange={(val) => setEmail(val)}
           value={email}
           placeholder="john.doe@alphametics.com"/>
               <InputField  
               isLogin
               label="비밀번호" 
-              iconName="lock"
+              iconName="lock-closed"
+              iconSize={24}
           onChange={(val) => setPassword(val)}
           value={password}
           placeholder='●●●●●●●●' />
