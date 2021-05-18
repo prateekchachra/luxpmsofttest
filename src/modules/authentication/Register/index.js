@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {View, Text, StyleSheet} from 'react-native';
+import {View, ScrollView, StyleSheet} from 'react-native';
 
 
 import Header from '../../../components/Header';
@@ -13,6 +13,7 @@ import AuthLabel from '../common/components/AuthLabel';
 
 
 import {themeColors} from '../../../utils/theme';
+import RegisterForm from './RegisterForm';
 
 // create a component
 const Register = ({navigation}) => {
@@ -26,11 +27,13 @@ const Register = ({navigation}) => {
     }
 
     return (
-        <View style={styles.containerStyle}>
+        <ScrollView contentContainerStyle={styles.containerStyle}>
                <View style={styles.headerContainerStyle}>
             <Header />
 
             <AuthLabel label="로그인"/>
+
+            <RegisterForm />
             </View>
                 <View style={styles.buttonContainerStyle}>
                 <Button 
@@ -45,16 +48,15 @@ const Register = ({navigation}) => {
                 label="로그인"
                 />
                     </View>
-        </View>
+        </ScrollView>
     );
 };
 
 // define your styles
 const styles = StyleSheet.create({
     containerStyle: {
-        flex: 1,
+        flexGrow: 1,
         backgroundColor: themeColors.PRIMARY_WHITE,
-        paddingVertical: 20,
         justifyContent: 'space-between',
         alignItems: 'center'
     },

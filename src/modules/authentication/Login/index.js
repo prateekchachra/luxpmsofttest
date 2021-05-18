@@ -1,16 +1,15 @@
 import React from 'react'
-
 import {View, StyleSheet} from 'react-native';
 import Toast from 'react-native-toast-message';
 
 import Header from '../../../components/Header';
 import Button from '../../../components/Button';
-
-
 import AuthLabel from '../common/components/AuthLabel';
 
-
 import {themeColors} from '../../../utils/theme';
+
+import LoginForm from './LoginForm'
+
 
 export default function Login({navigation}) {
 
@@ -37,6 +36,7 @@ export default function Login({navigation}) {
             <Header />
 
         <AuthLabel label="로그인"/>
+        <LoginForm />
         </View>
             <View style={styles.buttonContainerStyle}>
            <Button 
